@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      database: tacoclouddb
+      uri: mongodb+srv://Katlego:NewPass@cluster0.d4myjah.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
