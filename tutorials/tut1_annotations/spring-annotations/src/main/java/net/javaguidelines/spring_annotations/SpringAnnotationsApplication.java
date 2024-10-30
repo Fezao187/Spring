@@ -2,6 +2,7 @@ package net.javaguidelines.spring_annotations;
 
 import net.javaguidelines.spring_annotations.controllers.MyController;
 import net.javaguidelines.spring_annotations.controllers.PizzaController;
+import net.javaguidelines.spring_annotations.lazy.LazyLoader;
 import net.javaguidelines.spring_annotations.repository.MyRepository;
 import net.javaguidelines.spring_annotations.service.MyService;
 import net.javaguidelines.spring_annotations.service.VegPizza;
@@ -23,6 +24,8 @@ MyController myController=context.getBean(MyController.class);
 
 		MyRepository myRepository=context.getBean(MyRepository.class);
 		System.out.println(myRepository.hello());
+
+		LazyLoader lazyLoader=context.getBean(LazyLoader.class);
 //		VegPizza vegPizza= context.getBean(VegPizza.class);
 //		System.out.println(vegPizza.getPizza());
 	}

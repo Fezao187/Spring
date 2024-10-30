@@ -6,6 +6,7 @@ import net.javaguidelines.spring_annotations.service.Pizza;
 import net.javaguidelines.spring_annotations.service.VegPizza;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class AppConfig {
