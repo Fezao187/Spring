@@ -1,5 +1,6 @@
 package net.javaguidelines.spring_annotations;
 
+import net.javaguidelines.spring_annotations.configProperties.AppPropertiesDemo;
 import net.javaguidelines.spring_annotations.controllers.MyController;
 import net.javaguidelines.spring_annotations.controllers.PizzaController;
 import net.javaguidelines.spring_annotations.lazy.LazyLoader;
@@ -28,6 +29,9 @@ MyController myController=context.getBean(MyController.class);
 		LazyLoader lazyLoader=context.getBean(LazyLoader.class);
 //		VegPizza vegPizza= context.getBean(VegPizza.class);
 //		System.out.println(vegPizza.getPizza());
+
+		AppPropertiesDemo appPropertiesDemo=context.getBean(AppPropertiesDemo.class);
+		appPropertiesDemo.display();
 	}
 
 }
