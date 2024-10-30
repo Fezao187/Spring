@@ -4,18 +4,21 @@ import net.javaguidelines.spring_annotations.beans.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+//@Controller // For spring MVC apps
+//@ResponseBody
+@RestController // for rest apis
 public class BookController {
 
     @RequestMapping("/hello-world")
-    @ResponseBody
+//    @ResponseBody
     public String helloWorld() {
         return "Hello World";
     }
 
     @RequestMapping("/book")
-    @ResponseBody
+//    @ResponseBody
     public Book getBook() {
         Book book = new Book(1,"Core Java", "Learn core Java and features");
         return book;
