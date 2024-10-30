@@ -33,15 +33,25 @@ public class BookController {
         return book;
     }
 
-//    @RequestMapping(value = "/books/create",
+    //    @RequestMapping(value = "/books/create",
 //            method = RequestMethod.POST)
     @PostMapping(value = "/books/create",
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.APPLICATION_JSON_VALUE)
 //    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
         System.out.println(book.getId());
         System.out.println(book.getTitle());
         System.out.println(book.getDescription());
         return new ResponseEntity<>(book, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/books/update/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable int id,
+                                           @RequestBody Book updatedBook) {
+        System.out.println(id);
+        System.out.println(updatedBook.getTitle());
+        System.out.println(updatedBook.getDescription());
+        updatedBook.setId(id);
+        return ResponseEntity.ok(updatedBook);
     }
 }
