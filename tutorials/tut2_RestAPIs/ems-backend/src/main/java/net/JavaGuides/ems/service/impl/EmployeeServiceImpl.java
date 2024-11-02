@@ -1,4 +1,4 @@
-package net.JavaGuides.ems.impl;
+package net.JavaGuides.ems.service.impl;
 
 import lombok.AllArgsConstructor;
 import net.JavaGuides.ems.dto.EmployeeDto;
@@ -7,6 +7,9 @@ import net.JavaGuides.ems.mapper.EmployeeMapper;
 import net.JavaGuides.ems.repository.EmployeeRepository;
 import net.JavaGuides.ems.service.EmployeeService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -27,4 +30,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(()-> new RuntimeException("Employee of id: ("+ employeeId +"), does not exist"));
         return EmployeeMapper.mapToEmployeeDto(employee);
     }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees() {
+        List<Employee> employees=employeeRepository.findAll();
+        return employees.stream().map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
 }
