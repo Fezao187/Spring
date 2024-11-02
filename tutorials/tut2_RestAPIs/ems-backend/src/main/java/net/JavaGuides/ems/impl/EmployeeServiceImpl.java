@@ -20,4 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
+
+    @Override
+    public EmployeeDto getEmployeeById(Long employeeId) {
+        Employee employee=employeeRepository.findById(employeeId)
+                .orElseThrow(()-> new RuntimeException("Employee of id: ("+ employeeId +"), does not exist"));
+        return EmployeeMapper.mapToEmployeeDto(employee);
+    }
 }
