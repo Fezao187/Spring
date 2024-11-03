@@ -1,0 +1,34 @@
+### Find all runs
+GET localhost:8080/api/runs
+
+### Find run by Id
+GET localhost:8080/api/runs/1
+
+### Find Run By ID that doesnt exist
+GET localhost:8080/api/runs/4
+
+### Create run
+POST localhost:8080/api/runs
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "Monday Morning Run",
+  "startedOn": "2024-11-03T18:08:08.443772",
+  "completedOn": "2024-11-03T18:38:08.443772",
+  "miles": 7,
+  "location": "INDOOR"
+}
+
+### Create invalid run (Empty title)
+POST localhost:8080/api/runs
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "",
+  "startedOn": "2024-11-03T18:08:08.443772",
+  "completedOn": "2024-11-03T18:38:08.443772",
+  "miles": 7,
+  "location": "INDOOR"
+}
