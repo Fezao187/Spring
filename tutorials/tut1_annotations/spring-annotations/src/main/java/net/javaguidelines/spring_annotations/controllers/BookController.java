@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class BookController {
 
-    @RequestMapping("/hello-world")
-//    @ResponseBody
+    @RequestMapping(value = "/hello-world")
+    @ResponseBody
     public String helloWorld() {
         return "Hello World";
     }
@@ -27,7 +27,7 @@ public class BookController {
     @GetMapping(value = {"/book", "/core-java", "/java"},
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-//    @ResponseBody
+    @ResponseBody
     public Book getBook() {
         Book book = new Book(1, "Core Java", "Learn core Java and features");
         return book;

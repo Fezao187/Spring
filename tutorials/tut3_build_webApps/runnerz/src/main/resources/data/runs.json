@@ -1,0 +1,84 @@
+{
+  "runs": [
+    {
+      "id": 1,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "OUTDOOR"
+    },
+    {
+      "id": 2,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 3,
+      "title": "Monday Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 4,
+      "title": "Friday Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 5,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "OUTDOOR"
+    },
+    {
+      "id": 6,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 7,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 8,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 9,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    },
+    {
+      "id": 10,
+      "title": "Monday Morning Run",
+      "startedOn": "2024-11-03T18:08:08.443772",
+      "completedOn": "2024-11-03T18:38:08.443772",
+      "miles": 7,
+      "location": "INDOOR"
+    }
+  ]
+}
