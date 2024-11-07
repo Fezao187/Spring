@@ -32,3 +32,6 @@ Content-Type: application/json
   "miles": 7,
   "location": "INDOOR"
 }
+
+### Find by Location
+GET localhost:8080/api/runs/location/OUTDOOR

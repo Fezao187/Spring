@@ -2,16 +2,8 @@ package spring.web.app.example.runnerz;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import spring.web.app.example.runnerz.run.Location;
-import spring.web.app.example.runnerz.run.Run;
-import spring.web.app.example.runnerz.run.RunRepository;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
 public class Application {
