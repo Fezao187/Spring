@@ -1,6 +1,6 @@
-FROM openjdk:17-jre-slim
+FROM openjdk:17-oracle
 
-ENV JAVA_OPTS " -Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_OPTS=" -Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 
 WORKDIR application
 
