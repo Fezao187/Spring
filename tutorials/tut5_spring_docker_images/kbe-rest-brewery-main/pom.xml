@@ -102,7 +102,7 @@
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>kbe-rest/${project.artifactId}</name>
+                            <name>fezao187/${project.artifactId}</name>
                             <build>
                                 <assembly>
                                     <descriptorRef>artifact</descriptorRef>
