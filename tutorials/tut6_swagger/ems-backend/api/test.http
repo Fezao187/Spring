@@ -1,0 +1,30 @@
+### Get employees
+GET localhost:8080/api/employees
+
+### Get employe by ID
+GET localhost:8080/api/employees/1
+
+### Create employee
+POST localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName": "NewName",
+  "lastName": "NewLastName",
+  "email": "New@gmail.com"
+}
+
+### Update employee
+PUT localhost:8080/api/employees/5
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName": "John",
+  "lastName": "Wright",
+  "email": "John@gmail.com"
+}
+
+### Delete employee
+DELETE localhost:8080/api/employees/5
