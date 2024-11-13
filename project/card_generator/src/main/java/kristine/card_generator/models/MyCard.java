@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,8 +18,8 @@ public class MyCard{
     @GeneratedValue
     private Integer id;
     private String name;
-    private Integer cardNumber;
-    private Integer expiryDate;
+    private BigInteger cardNumber;
+    private String expiryDate;
     private Integer cvv;
     @ManyToOne
     @JoinColumn(name = "user_id")
