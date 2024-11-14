@@ -1,4 +1,4 @@
-package kristine.card_generator.tools;
+package kristine.card_generator.tools.utils;
 
 import kristine.card_generator.models.VirtualCard;
 
