@@ -9,16 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class GenerateCard {
-    VirtualCard card = new VirtualCard();
 
-    public VirtualCard generateCard() {
-        card.setCardNumber(genCardNum(16));
-        card.setCvv(genCvvNum(3));
-        card.setExpiryDate(genDate());
-        return card;
-    }
-
-    private BigInteger genCardNum(int numDigits) {
+    public BigInteger genCardNum(int numDigits) {
         if (numDigits < 1) {
             throw new IllegalArgumentException("Number of digits must be at least 1");
         }
@@ -41,7 +33,7 @@ public class GenerateCard {
         return new BigInteger(number.toString());
     }
 
-    private int genCvvNum(int numDigits) {
+    public int genCvvNum(int numDigits) {
         if (numDigits < 1) {
             throw new IllegalArgumentException("Number of digits must be at least 1");
         }
@@ -55,7 +47,7 @@ public class GenerateCard {
         return random.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
-    private String genDate(){
+    public String genDate(){
         LocalDate expiryDate = LocalDate.now().plusYears(5);
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MM/yy");
 
