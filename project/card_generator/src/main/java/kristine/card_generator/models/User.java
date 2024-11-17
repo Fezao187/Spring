@@ -32,10 +32,8 @@ public class User implements UserDetails {
     private String email;
     @NotEmpty
     private String password;
-    @NotEmpty
     @OneToMany(mappedBy = "user")
     private List<MyCard> myCards;
-    @NotEmpty
     @OneToMany(mappedBy = "user")
     private List<VirtualCard> virtualCards;
 
