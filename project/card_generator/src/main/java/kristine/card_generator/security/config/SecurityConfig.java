@@ -1,7 +1,7 @@
-package com.jwt.tut.config;
+package kristine.card_generator.security.config;
 
-import com.jwt.tut.filter.JwtAuthFilter;
-import com.jwt.tut.service.UserDetailsServiceImp;
+import kristine.card_generator.security.filter.JwtAuthFilter;
+import kristine.card_generator.security.service.UserDetailsServiceImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,8 +22,8 @@ public class SecurityConfig {
     private final UserDetailsServiceImp userDetailsServiceImp;
     private final JwtAuthFilter jwtAuthFilter;
 
-    public SecurityConfig(UserDetailsServiceImp userDetailsServiceImp, JwtAuthFilter jwtAuthFilter) {
-        this.userDetailsServiceImp = userDetailsServiceImp;
+    public SecurityConfig(UserDetailsServiceImp UserDetailsServiceImp, JwtAuthFilter jwtAuthFilter) {
+        this.userDetailsServiceImp = UserDetailsServiceImp;
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
@@ -31,14 +32,13 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/login/**","/register/**")
-                                .permitAll()
-                                .requestMatchers("/admin_only/**").hasAnyAuthority("ADMIN")
-                                .anyRequest()
-                                .authenticated()
+                    req->req.requestMatchers("/login/**","/register/**")
+                            .permitAll()
+                            .anyRequest()
+                            .authenticated()
                 ).userDetailsService(userDetailsServiceImp)
-                .sessionManagement(session -> session.
-                        sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session->session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
