@@ -1,6 +1,9 @@
 package kristine.card_generator.tools.utils;
 
 import kristine.card_generator.models.VirtualCard;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -8,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+@Component
 public class GenerateCard {
 
     public BigInteger genCardNum(int numDigits) {

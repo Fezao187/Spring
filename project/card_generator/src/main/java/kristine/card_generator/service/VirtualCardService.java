@@ -7,9 +7,11 @@ import kristine.card_generator.repository.UserRepository;
 import kristine.card_generator.repository.VirtualCardRepository;
 import kristine.card_generator.security.service.JwtService;
 import kristine.card_generator.tools.utils.GenerateCard;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VirtualCardService {
     private final UserRepository userRepository;
     private final VirtualCardRepository virtualCardRepository;
@@ -23,7 +25,6 @@ public class VirtualCardService {
         this.generateCard = generateCard;
     }
 
-    //    @RequestHeader (name="Authorization") String token
     public VirtualCardResponse createCard(String token){
         VirtualCard virtualCard = new VirtualCard();
         String username = jwtService.extractUsername(token);
