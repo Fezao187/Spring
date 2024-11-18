@@ -1,7 +1,7 @@
 package kristine.card_generator.service;
 
-import kristine.card_generator.models.AuthResponse;
-import kristine.card_generator.models.User;
+import kristine.card_generator.models.responses.AuthResponse;
+import kristine.card_generator.models.entities.User;
 import kristine.card_generator.repository.UserRepository;
 import kristine.card_generator.security.service.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +25,7 @@ public class AuthService {
 
     public AuthResponse register(User request) {
         User user = new User();
-        user.setUsername(request.getName());
+        user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));

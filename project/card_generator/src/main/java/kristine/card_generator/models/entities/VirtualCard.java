@@ -1,6 +1,7 @@
-package kristine.card_generator.models;
+package kristine.card_generator.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MyCard{
+public class VirtualCard {
     @Id
     @GeneratedValue
     private Integer id;

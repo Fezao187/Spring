@@ -1,4 +1,6 @@
-package kristine.card_generator.models;
+package kristine.card_generator.models.responses;
+
+import kristine.card_generator.models.entities.User;
 
 public class AuthResponse {
     private String token;

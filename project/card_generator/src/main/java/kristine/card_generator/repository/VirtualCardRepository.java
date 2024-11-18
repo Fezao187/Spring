@@ -1,6 +1,6 @@
 package kristine.card_generator.repository;
 
-import kristine.card_generator.models.VirtualCard;
+import kristine.card_generator.models.entities.VirtualCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

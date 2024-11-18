@@ -1,8 +1,8 @@
 package kristine.card_generator.service;
 
-import kristine.card_generator.models.User;
-import kristine.card_generator.models.VirtualCard;
-import kristine.card_generator.models.VirtualCardResponse;
+import kristine.card_generator.models.entities.User;
+import kristine.card_generator.models.entities.VirtualCard;
+import kristine.card_generator.models.responses.VirtualCardResponse;
 import kristine.card_generator.repository.UserRepository;
 import kristine.card_generator.repository.VirtualCardRepository;
 import kristine.card_generator.security.service.JwtService;

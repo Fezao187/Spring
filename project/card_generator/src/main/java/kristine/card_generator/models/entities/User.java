@@ -1,4 +1,4 @@
-package kristine.card_generator.models;
+package kristine.card_generator.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

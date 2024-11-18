@@ -1,7 +1,7 @@
 package kristine.card_generator.controller;
 
-import kristine.card_generator.models.VirtualCard;
-import kristine.card_generator.models.VirtualCardResponse;
+import kristine.card_generator.models.entities.VirtualCard;
+import kristine.card_generator.models.responses.VirtualCardResponse;
 import kristine.card_generator.service.VirtualCardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

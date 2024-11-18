@@ -1,4 +1,6 @@
-package kristine.card_generator.models;
+package kristine.card_generator.models.responses;
+
+import kristine.card_generator.models.entities.VirtualCard;
 
 public class VirtualCardResponse {
     private VirtualCard virtualCard;
