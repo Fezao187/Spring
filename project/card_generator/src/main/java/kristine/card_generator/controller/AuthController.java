@@ -3,6 +3,7 @@ package kristine.card_generator.controller;
 import kristine.card_generator.models.responses.AuthResponse;
 import kristine.card_generator.models.entities.User;
 import kristine.card_generator.service.AuthService;
+import kristine.card_generator.tools.utils.SpliteToken;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
     private final AuthService authService;
+    private final SpliteToken spliteToken;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, SpliteToken spliteToken) {
         this.authService = authService;
+        this.spliteToken = spliteToken;
     }
 
     @PostMapping("/register")
@@ -29,6 +32,7 @@ public class AuthController {
     public ResponseEntity<String> getToken(
             @RequestHeader(name="Authorization") String token
     ) {
-        return ResponseEntity.ok(token);
+        String filteredToken = spliteToken.split(token);
+        return ResponseEntity.ok(filteredToken);
     }
 }

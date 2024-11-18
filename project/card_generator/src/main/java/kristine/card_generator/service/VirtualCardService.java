@@ -7,6 +7,7 @@ import kristine.card_generator.repository.UserRepository;
 import kristine.card_generator.repository.VirtualCardRepository;
 import kristine.card_generator.security.service.JwtService;
 import kristine.card_generator.tools.utils.GenerateCard;
+import kristine.card_generator.tools.utils.SpliteToken;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,39 +18,57 @@ public class VirtualCardService {
     private final VirtualCardRepository virtualCardRepository;
     private final JwtService jwtService;
     private final GenerateCard generateCard;
+    private final SpliteToken spliteToken;
 
-    public VirtualCardService(UserRepository userRepository, VirtualCardRepository virtualCardRepository, JwtService jwtService, GenerateCard generateCard) {
+    public VirtualCardService(UserRepository userRepository, VirtualCardRepository virtualCardRepository, JwtService jwtService, GenerateCard generateCard, SpliteToken spliteToken) {
         this.userRepository = userRepository;
         this.virtualCardRepository = virtualCardRepository;
         this.jwtService = jwtService;
         this.generateCard = generateCard;
+        this.spliteToken = spliteToken;
     }
 
-    public VirtualCardResponse createCard(String token){
+    public VirtualCardResponse createCard(String token, VirtualCard request) {
+        if(token == null){
+            return new VirtualCardResponse("You are not logged in, please login first!");
+        }
+        String filteredToken = spliteToken.split(token);
         VirtualCard virtualCard = new VirtualCard();
-        String username = jwtService.extractUsername(token);
+        String username = jwtService.extractUsername(filteredToken);
 
         User user = userRepository.findByUsername(username).orElseThrow();
 
-        virtualCard.setName(user.getName());
-        virtualCard.setCardNumber(generateCard.genCardNum(16));
-        virtualCard.setCvv(generateCard.genCvvNum(3));
-        virtualCard.setExpiryDate(generateCard.genDate());
-        virtualCard.setUser(user);
+        try {
+            if(request.getName()==null) {
+                return new VirtualCardResponse("Please enter card name!");
+            }
 
+            virtualCard.setName(request.getName());
+            virtualCard.setCardNumber(generateCard.genCardNum(16));
+            virtualCard.setCvv(generateCard.genCvvNum(3));
+            virtualCard.setExpiryDate(generateCard.genDate());
+            virtualCard.setUser(user);
+        }catch (Exception e) {
+            return new VirtualCardResponse("An error occured! Please try again!");
+        }
         virtualCardRepository.save(virtualCard);
 
-        return new VirtualCardResponse(virtualCard);
+        return new VirtualCardResponse(virtualCard, "Virtual Card Created!");
     }
 
    public VirtualCardResponse getCard(Integer cardId){
         VirtualCard virtualCard = virtualCardRepository.findById(cardId).orElseThrow();
+        if(virtualCard == null){
+            return new VirtualCardResponse("Virtual Card Not Found!");
+        }
         return new VirtualCardResponse(virtualCard);
    }
 
    public List<VirtualCard> getMyVirtualCards(String token){
-        String username = jwtService.extractUsername(token);
+       String filteredToken = spliteToken.split(token);
+        String username = jwtService.extractUsername(filteredToken);
         User user = userRepository.findByUsername(username).orElseThrow();
+
         Integer userId = user.getId();
         List<VirtualCard> virtualCards = virtualCardRepository.findByUserId(userId);
 
@@ -57,9 +76,18 @@ public class VirtualCardService {
    }
 
    public VirtualCardResponse deleteVirtualCard(Integer cardId){
-        VirtualCard virtualCard = virtualCardRepository.findById(cardId).orElseThrow();
-        virtualCardRepository.deleteById(cardId);
-
-        return new VirtualCardResponse(virtualCard);
+       VirtualCard virtualCard = virtualCardRepository.findById(cardId).orElseThrow();
+       if (cardId == null){
+           return new VirtualCardResponse("Please enter valid card ID!");
+       }
+       if(virtualCard == null){
+           return new VirtualCardResponse("Virtual Card Not Found! Please try again!");
+       }
+       try {
+           virtualCardRepository.deleteById(cardId);
+       }catch (Exception e) {
+           return new VirtualCardResponse("An error occured! Please try again!");
+       }
+       return new VirtualCardResponse(virtualCard, "Card Deleted successfully!");
    }
 }

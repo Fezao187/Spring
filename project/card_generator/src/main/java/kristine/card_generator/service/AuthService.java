@@ -25,30 +25,48 @@ public class AuthService {
 
     public AuthResponse register(User request) {
         User user = new User();
-        user.setName(request.getName());
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        if(request.getName()== null || request.getName().isEmpty()) {
+            return new AuthResponse("Please enter your name");
+        } else if(request.getUsername() == null || request.getUsername().isEmpty()) {
+            return new AuthResponse("Username is required");
+        } else if (request.getPassword() == null || request.getPassword().isEmpty()) {
+            return new AuthResponse("Password is required");
+        }
+        try {
+            user.setName(request.getName());
+            user.setUsername(request.getUsername());
+            user.setEmail(request.getEmail());
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        user = userRepository.save(user);
-
+            user = userRepository.save(user);
+        }catch (Exception e) {
+            return new AuthResponse("Something went wrong");
+        }
         String token = jwtService.generateToken(user);
 
-        return new AuthResponse(token, user);
+        return new AuthResponse("Account created successfully",token, user);
     }
 
     public AuthResponse login(User request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-
+        try {
+            if(request.getUsername() == null || request.getUsername().isEmpty()) {
+                return new AuthResponse("Please enter your username");
+            }else if(request.getPassword() == null || request.getPassword().isEmpty()) {
+                return new AuthResponse("Please enter your password!");
+            }
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword()
+                    )
+            );
+        }catch (Exception e) {
+            return new AuthResponse("Password or Username is incorrect");
+        }
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
 
         String token = jwtService.generateToken(user);
 
-        return new AuthResponse(token, user);
+        return new AuthResponse("Logged in successfully!",token, user);
     }
 }

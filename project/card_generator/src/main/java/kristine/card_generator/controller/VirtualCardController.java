@@ -19,8 +19,9 @@ public class VirtualCardController {
 
     @GetMapping("/create")
     public ResponseEntity<VirtualCardResponse> createCard(
-            @RequestHeader(name="Authorization") String token){
-        return ResponseEntity.ok(virtualCardService.createCard(token));
+            @RequestHeader(name="Authorization") String token,
+            @RequestBody VirtualCard virtualCard) {
+        return ResponseEntity.ok(virtualCardService.createCard(token, virtualCard));
     }
 
     @GetMapping("/{id}")
@@ -33,7 +34,7 @@ public class VirtualCardController {
     public ResponseEntity<List<VirtualCard>> getAllCards(
             @RequestHeader (name="Authorization") String token
     ){
-        return ResponseEntity.ok(virtualCardService.getMyVirtualCards(token));
+            return ResponseEntity.ok(virtualCardService.getMyVirtualCards(token));
     }
 
     @DeleteMapping("/{id}")
