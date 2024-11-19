@@ -25,4 +25,12 @@ public class VirtualCard {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public VirtualCard(Integer id,String name, BigInteger cardNumber,Integer cvv, String expiryDate) {
+        this.id = id;
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+    }
 }

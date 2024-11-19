@@ -37,7 +37,10 @@ public class VirtualCardService {
         String username = jwtService.extractUsername(filteredToken);
 
         User user = userRepository.findByUsername(username).orElseThrow();
-
+        User newUser = new User(user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getPassword());
         try {
             if(request.getName()==null) {
                 return new VirtualCardResponse("Please enter card name!");
@@ -47,7 +50,7 @@ public class VirtualCardService {
             virtualCard.setCardNumber(generateCard.genCardNum(16));
             virtualCard.setCvv(generateCard.genCvvNum(3));
             virtualCard.setExpiryDate(generateCard.genDate());
-            virtualCard.setUser(user);
+            virtualCard.setUser(newUser);
         }catch (Exception e) {
             return new VirtualCardResponse("An error occured! Please try again!");
         }
@@ -61,7 +64,14 @@ public class VirtualCardService {
         if(virtualCard == null){
             return new VirtualCardResponse("Virtual Card Not Found!");
         }
-        return new VirtualCardResponse(virtualCard);
+        VirtualCard newVirtualCard = new VirtualCard(
+                virtualCard.getId(),
+                virtualCard.getName(),
+                virtualCard.getCardNumber(),
+                virtualCard.getCvv(),
+                virtualCard.getExpiryDate()
+        );
+        return new VirtualCardResponse(newVirtualCard);
    }
 
    public List<VirtualCard> getMyVirtualCards(String token){
@@ -71,7 +81,6 @@ public class VirtualCardService {
 
         Integer userId = user.getId();
         List<VirtualCard> virtualCards = virtualCardRepository.findByUserId(userId);
-
         return virtualCards;
    }
 
@@ -88,6 +97,13 @@ public class VirtualCardService {
        }catch (Exception e) {
            return new VirtualCardResponse("An error occured! Please try again!");
        }
-       return new VirtualCardResponse(virtualCard, "Card Deleted successfully!");
+       VirtualCard newVirtualCard = new VirtualCard(
+               virtualCard.getId(),
+               virtualCard.getName(),
+               virtualCard.getCardNumber(),
+               virtualCard.getCvv(),
+               virtualCard.getExpiryDate()
+       );
+       return new VirtualCardResponse(newVirtualCard, "Card Deleted successfully!");
    }
 }

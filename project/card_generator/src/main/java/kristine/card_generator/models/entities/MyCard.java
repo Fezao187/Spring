@@ -18,15 +18,19 @@ public class MyCard{
     @Id
     @GeneratedValue
     private Integer id;
-    @NotEmpty
     private String name;
-    @NotEmpty
     private BigInteger cardNumber;
-    @NotEmpty
     private String expiryDate;
-    @NotEmpty
     private Integer cvv;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public MyCard(Integer id,String name, BigInteger cardNumber, Integer cvv,String expiryDate) {
+        this.id = id;
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.cvv = cvv;
+        this.expiryDate = expiryDate;
+    }
 }

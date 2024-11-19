@@ -37,6 +37,12 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<VirtualCard> virtualCards;
 
+    public User(Integer id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
